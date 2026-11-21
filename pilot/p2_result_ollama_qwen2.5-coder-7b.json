@@ -1,0 +1,43 @@
+{
+  "model": "ollama/qwen2.5-coder:7b",
+  "passed": 4,
+  "of": 5,
+  "verdict": "PASS",
+  "rows": [
+    {
+      "task": "Create hello.py that prints exactly: hello fleet",
+      "status": "done",
+      "steps": 3,
+      "seconds": 1.6,
+      "passed": true
+    },
+    {
+      "task": "Create fib.py that prints the 10th Fibonacci numbe",
+      "status": "done",
+      "steps": 4,
+      "seconds": 4.9,
+      "passed": false
+    },
+    {
+      "task": "Create a file named primes.txt containing the prim",
+      "status": "done",
+      "steps": 2,
+      "seconds": 1.1,
+      "passed": true
+    },
+    {
+      "task": "Create mathutil.py with a function add(a, b) that ",
+      "status": "done",
+      "steps": 2,
+      "seconds": 2.7,
+      "passed": true
+    },
+    {
+      "task": "Create count.py that reads words.txt and prints ho",
+      "status": "done",
+      "steps": 2,
+      "seconds": 2.6,
+      "passed": true
+    }
+  ]
+}

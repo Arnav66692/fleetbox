@@ -1,0 +1,8 @@
+{
+  "n": 20,
+  "ok": 20,
+  "median_exec_s": 0.165,
+  "median_create_s": 0.464,
+  "total_s": 0.81,
+  "verdict": "PASS"
+}

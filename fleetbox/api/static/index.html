@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fleetbox</title>
+<style>
+:root {
+  --bg: #f4f3ef; --panel: #ffffff; --ink: #17171a; --muted: #6b6b72; --line: #dcdad3;
+  --run: #2f6fde; --ok: #1f8a4c; --bad: #c2412d; --wait: #a0a0a8;
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #111113; --panel: #1a1a1d; --ink: #ececef; --muted: #8d8d96; --line: #2c2c31;
+    --run: #6b9cff; --ok: #4cc27f; --bad: #ff7a63; --wait: #5c5c64; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 -apple-system, "Inter", system-ui, sans-serif; }
+header { display: flex; align-items: baseline; gap: 16px; padding: 20px 24px 8px; }
+header h1 { font: 600 18px var(--mono); margin: 0; letter-spacing: -0.02em; }
+header .stats { color: var(--muted); font: 12px var(--mono); }
+main { display: grid; grid-template-columns: 340px 1fr; gap: 20px; padding: 12px 24px 24px; }
+@media (max-width: 860px) { main { grid-template-columns: 1fr; padding: 12px 16px; } }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+label { display: block; font-size: 12px; color: var(--muted); margin: 12px 0 4px; }
+label:first-child { margin-top: 0; }
+textarea, input { width: 100%; background: var(--bg); color: var(--ink); border: 1px solid var(--line);
+  border-radius: 6px; padding: 8px 10px; font: 13px var(--mono); }
+textarea { min-height: 160px; resize: vertical; }
+.row { display: flex; gap: 8px; }
+button { margin-top: 14px; width: 100%; padding: 10px; border: 0; border-radius: 6px; background: var(--ink);
+  color: var(--bg); font-weight: 600; cursor: pointer; }
+button:disabled { opacity: .5; cursor: default; }
+.hint { color: var(--muted); font-size: 12px; margin-top: 8px; }
+.err { color: var(--bad); font-size: 12px; margin-top: 8px; min-height: 1em; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; align-content: start; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; cursor: pointer;
+  transition: border-color .15s ease-out; }
+.card:hover { border-color: var(--muted); }
+.card.sel { border-color: var(--run); }
+.card .top { display: flex; align-items: center; gap: 6px; font: 11px var(--mono); color: var(--muted); }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--wait); flex: none; }
+.dot.running, .dot.starting { background: var(--run); animation: pulse 1.2s ease-in-out infinite; }
+.dot.done { background: var(--ok); } .dot.error, .dot.step_limit { background: var(--bad); }
+@keyframes pulse { 50% { opacity: .35; } }
+.card .task { margin-top: 6px; font-size: 13px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.detail { margin-top: 20px; }
+.detail h2 { font-size: 14px; margin: 0 0 8px; }
+.log { font: 12px/1.5 var(--mono); max-height: 420px; overflow: auto; border-top: 1px solid var(--line); }
+.ev { padding: 6px 0; border-bottom: 1px solid var(--line); white-space: pre-wrap; word-break: break-word; }
+.ev .k { color: var(--muted); }
+.ev.tool_call .k { color: var(--run); } .ev.done .k { color: var(--ok); } .ev.error .k { color: var(--bad); }
+.files pre { background: var(--bg); padding: 8px; border-radius: 6px; overflow: auto; font: 12px var(--mono); max-height: 240px; }
+.empty { color: var(--muted); padding: 40px 0; text-align: center; }
+</style>
+</head>
+<body>
+<header><h1>fleetbox</h1><span class="stats" id="stats"></span></header>
+<main>
+  <section class="panel">
+    <label for="tasks">Tasks, one per line</label>
+    <textarea id="tasks">Create hello.py that prints exactly: hello fleet
+Create fib.py that prints the 10th Fibonacci number, 55.
+Create a file primes.txt with the primes below 20, one per line.</textarea>
+    <div class="row">
+      <div style="flex:1"><label for="copies">Copies of each</label><input id="copies" type="number" min="1" max="50" value="1"></div>
+      <div style="flex:2"><label for="model">Model</label><input id="model"></div>
+    </div>
+    <button id="go">Launch fleet</button>
+    <div class="err" id="err"></div>
+    <div class="hint" id="hint"></div>
+  </section>
+  <section>
+    <div class="grid" id="grid"><div class="empty">No agents yet.</div></div>
+    <div class="detail panel" id="detail" hidden>
+      <h2 id="dtitle"></h2>
+      <div class="log" id="log"></div>
+      <div class="files" id="files"></div>
+    </div>
+  </section>
+</main>
+<script>
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+let selected = null, lastSeq = 0, filesShown = false;
+
+fetch("/api/config").then(r => r.json()).then(c => {
+  $("model").value = c.default_model;
+  $("hint").textContent = `Each agent gets its own Docker sandbox with no network. Up to ${c.max_concurrent} run at once, the rest queue.`;
+});
+
+$("go").onclick = async () => {
+  $("err").textContent = "";
+  const lines = $("tasks").value.split("\n").map(s => s.trim()).filter(Boolean);
+  const copies = Math.max(1, Math.min(50, parseInt($("copies").value) || 1));
+  const tasks = lines.flatMap(t => Array(copies).fill(t));
+  $("go").disabled = true;
+  try {
+    const r = await fetch("/api/fleets", {method: "POST", headers: {"content-type": "application/json"},
+      body: JSON.stringify({tasks, model: $("model").value})});
+    const j = await r.json();
+    if (!r.ok) $("err").textContent = j.error;
+  } catch (e) { $("err").textContent = String(e); }
+  $("go").disabled = false;
+  refresh();
+};
+
+async function refresh() {
+  const runs = await fetch("/api/runs").then(r => r.json());
+  const count = (s) => runs.filter(r => r.status === s).length;
+  $("stats").textContent = `${runs.length} agents · ${count("running") + count("starting")} running · ${count("queued")} queued · ${count("done")} done · ${count("error") + count("step_limit")} failed`;
+  if (!runs.length) return;
+  $("grid").innerHTML = runs.map(r => `
+    <div class="card ${r.id === selected ? "sel" : ""}" data-id="${r.id}">
+      <div class="top"><span class="dot ${esc(r.status)}"></span>${esc(r.status)} · step ${r.steps || 0}${r.seconds ? " · " + r.seconds.toFixed(1) + "s" : ""}</div>
+      <div class="task">${esc(r.task)}</div>
+    </div>`).join("");
+  document.querySelectorAll(".card").forEach(el => el.onclick = () => select(el.dataset.id));
+  if (selected) pollDetail(runs.find(r => r.id === selected));
+}
+
+function select(id) {
+  selected = id; lastSeq = 0; filesShown = false;
+  $("log").innerHTML = ""; $("files").innerHTML = ""; $("detail").hidden = false;
+  refresh();
+}
+
+async function pollDetail(run) {
+  if (!run) return;
+  $("dtitle").textContent = `${run.id} · ${run.model} · ${run.status}`;
+  const evs = await fetch(`/api/runs/${run.id}/events?after=${lastSeq}`).then(r => r.json());
+  for (const e of evs) {
+    lastSeq = e.seq;
+    const body = e.type === "tool_call" ? `${e.name} ${JSON.stringify(e.args)}`
+      : e.type === "tool_result" ? e.output : e.text || e.message || "";
+    $("log").insertAdjacentHTML("beforeend", `<div class="ev ${esc(e.type)}"><span class="k">[${e.step ?? ""}] ${esc(e.type)}</span>  ${esc(body)}</div>`);
+  }
+  if (evs.length) $("log").scrollTop = $("log").scrollHeight;
+  const finished = !["queued", "starting", "running"].includes(run.status);
+  if (finished && !filesShown) {
+    filesShown = true;
+    const files = await fetch(`/api/runs/${run.id}/files`).then(r => r.json());
+    $("files").innerHTML = Object.entries(files).map(([p, c]) => `<h2 style="margin-top:14px">${esc(p)}</h2><pre>${esc(c)}</pre>`).join("")
+      || '<div class="hint">No files left in the sandbox.</div>';
+  }
+}
+
+refresh();
+setInterval(refresh, 1000);
+</script>
+</body>
+</html>
