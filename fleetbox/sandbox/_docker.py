@@ -1,12 +1,14 @@
 import base64
+import os
 import subprocess
 import uuid
 from dataclasses import dataclass
 
-IMAGE = "python:3.12-slim"
+IMAGE = os.environ.get("FLEETBOX_IMAGE", "fleetbox-py:1")
 WORKDIR = "/workspace"
 LABEL = "fleetbox=1"
 MAX_OUTPUT = 8000
+MAX_FILE_READ = 200_000
 
 
 @dataclass(frozen=True)
@@ -32,7 +34,10 @@ def create(memory: str = "512m", cpus: str = "1", network: bool = False) -> str:
         args += ["--network", "none"]
     proc = _docker(*args, IMAGE, "sleep", "infinity")
     if proc.returncode != 0:
-        raise RuntimeError(f"sandbox create failed: {proc.stderr.decode().strip()}")
+        err = proc.stderr.decode().strip()
+        if "Unable to find image" in err or "pull access denied" in err:
+            err += f"\nbuild it first: docker build -t {IMAGE} sandbox-image"
+        raise RuntimeError(f"sandbox create failed: {err}")
     return name
 
 
@@ -65,7 +70,7 @@ def read_file(sandbox_id: str, path: str) -> ExecResult:
     proc = _docker("exec", sandbox_id, "cat", path)
     if proc.returncode != 0:
         return ExecResult(proc.returncode, proc.stderr.decode(errors="replace"))
-    return ExecResult(0, proc.stdout.decode(errors="replace")[:MAX_OUTPUT])
+    return ExecResult(0, proc.stdout.decode(errors="replace")[:MAX_FILE_READ])
 
 
 def snapshot(sandbox_id: str, max_bytes: int = 200_000) -> dict[str, str]:
@@ -82,6 +87,18 @@ def snapshot(sandbox_id: str, max_bytes: int = 200_000) -> dict[str, str]:
             break
         files[path.removeprefix(WORKDIR + "/")] = content.output
     return files
+
+
+def put_dir(sandbox_id: str, host_dir: str) -> None:
+    proc = _docker("cp", f"{host_dir}/.", f"{sandbox_id}:{WORKDIR}", timeout=300)
+    if proc.returncode != 0:
+        raise RuntimeError(f"copy into sandbox failed: {proc.stderr.decode().strip()}")
+
+
+def get_dir(sandbox_id: str, host_dir: str) -> None:
+    proc = _docker("cp", f"{sandbox_id}:{WORKDIR}/.", host_dir, timeout=300)
+    if proc.returncode != 0:
+        raise RuntimeError(f"copy out of sandbox failed: {proc.stderr.decode().strip()}")
 
 
 def destroy(sandbox_id: str) -> None:

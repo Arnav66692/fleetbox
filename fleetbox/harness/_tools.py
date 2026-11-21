@@ -23,6 +23,19 @@ TOOLS = [
         },
     },
     {
+        "name": "edit_file",
+        "description": "Replace one exact snippet of text in a file. old must appear exactly once. Prefer this over write_file for changing existing files.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "path": {"type": "string"},
+                "old": {"type": "string", "description": "Exact text to replace, including indentation"},
+                "new": {"type": "string", "description": "Replacement text"},
+            },
+            "required": ["path", "old", "new"],
+        },
+    },
+    {
         "name": "read_file",
         "description": "Read a file from the sandbox.",
         "parameters": {
@@ -41,8 +54,24 @@ def execute(sandbox_id: str, name: str, args: dict) -> str:
             return f"exit={res.exit_code}\n{res.output}"
         if name == "write_file":
             return sandbox.write_file(sandbox_id, str(args["path"]), str(args["content"])).output
+        if name == "edit_file":
+            return _edit(sandbox_id, str(args["path"]), str(args["old"]), str(args["new"]))
         if name == "read_file":
             return sandbox.read_file(sandbox_id, str(args["path"])).output
     except KeyError as missing:
         return f"error: missing argument {missing} for tool {name}"
-    return f"error: unknown tool {name}. Available: run_command, write_file, read_file"
+    return f"error: unknown tool {name}. Available: " + ", ".join(t["name"] for t in TOOLS)
+
+
+def _edit(sandbox_id: str, path: str, old: str, new: str) -> str:
+    if not old:
+        return "error: old must not be empty. Copy the exact lines you want to replace from read_file output."
+    current = sandbox.read_file(sandbox_id, path)
+    if current.exit_code != 0:
+        return f"error: cannot read {path}: {current.output.strip()}"
+    count = current.output.count(old)
+    if count != 1:
+        return f"error: old text found {count} times in {path}, it must appear exactly once. Read the file and copy the text exactly."
+    if len(current.output) >= sandbox.MAX_FILE_READ:
+        return f"error: {path} is too large to edit safely, use run_command"
+    return sandbox.write_file(sandbox_id, path, current.output.replace(old, new)).output

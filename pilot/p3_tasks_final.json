@@ -1,0 +1,52 @@
+[
+  {
+    "name": "workspace-dynamics-74d68dd",
+    "kind": "real",
+    "tree": "data/pilot-trees/workspace-dynamics-74d68dd/base",
+    "task": "Bug report: Fix task generator review findings. The tests in tests/test_tasks.py fail. Fix the source code so they pass. Do not edit the test files.",
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_tasks.py",
+    "protect": [
+      "tests/test_tasks.py"
+    ]
+  },
+  {
+    "name": "wsdyn-auroc-midrank",
+    "kind": "planted",
+    "tree": "data/pilot-trees/wsdyn-auroc-midrank/base",
+    "task": "Bug report: auroc() in wsdyn gives wrong AUROC values, for example a perfect ranking no longer scores 1.0. The tests in tests/test_evaluation.py fail. Fix the source code so they pass. Do not edit the test files.",
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_evaluation.py",
+    "protect": [
+      "tests/test_evaluation.py"
+    ]
+  },
+  {
+    "name": "wsdyn-cf7-gate",
+    "kind": "planted",
+    "tree": "data/pilot-trees/wsdyn-cf7-gate/base",
+    "task": "Bug report: validate_cf7_label() rejects rows whose effect is exactly 15 percent as dead-zone rows, but 15 percent should count as False. The tests in tests/test_evaluation.py fail. Fix the source code so they pass. Do not edit the test files.",
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_evaluation.py",
+    "protect": [
+      "tests/test_evaluation.py"
+    ]
+  },
+  {
+    "name": "wsdyn-duplicate-claims",
+    "kind": "planted",
+    "tree": "data/pilot-trees/wsdyn-duplicate-claims/base",
+    "task": "Bug report: index_rows() silently accepts duplicate claim_id values instead of raising ValueError. The tests in tests/test_evaluation.py fail. Fix the source code so they pass. Do not edit the test files.",
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_evaluation.py",
+    "protect": [
+      "tests/test_evaluation.py"
+    ]
+  },
+  {
+    "name": "wsdyn-blind-metadata",
+    "kind": "planted",
+    "tree": "data/pilot-trees/wsdyn-blind-metadata/base",
+    "task": "Bug report: blind_claim() lets extra metadata nested inside messages through to the blinded output. The tests in tests/test_evaluation.py fail. Fix the source code so they pass. Do not edit the test files.",
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_evaluation.py",
+    "protect": [
+      "tests/test_evaluation.py"
+    ]
+  }
+]

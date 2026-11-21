@@ -1,0 +1,6 @@
+{"name": "workspace-dynamics-74d68dd", "baseline_passed": false, "best_of_5_passed": 0, "seconds": 43}
+{"name": "wsdyn-auroc-midrank", "baseline_passed": false, "best_of_5_passed": 0, "seconds": 75}
+{"name": "wsdyn-cf7-gate", "baseline_passed": false, "best_of_5_passed": 0, "seconds": 132}
+{"name": "wsdyn-duplicate-claims", "baseline_passed": false, "best_of_5_passed": 0, "seconds": 40}
+{"name": "wsdyn-blind-metadata", "baseline_passed": false, "best_of_5_passed": 0, "seconds": 57}
+{"model": "ollama/qwen2.5-coder:7b", "solved_best_of_5": 0, "solved_baseline": 0, "rescued_by_best_of_5": [], "of": 5, "verdict": "FAIL"}

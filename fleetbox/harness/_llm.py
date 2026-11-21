@@ -30,8 +30,9 @@ def _post(url: str, body: dict, headers: dict, timeout: float = 300) -> dict:
 class OllamaClient:
     """Messages are kept in a provider-neutral list; this class translates them."""
 
-    def __init__(self, model: str = "qwen2.5:1.5b", host: str | None = None):
+    def __init__(self, model: str = "qwen2.5:1.5b", host: str | None = None, temperature: float = 0.0):
         self.model = model
+        self.temperature = temperature
         self.host = host or os.environ.get("OLLAMA_HOST", "http://localhost:11434")
         self.label = f"ollama/{model}"
 
@@ -50,7 +51,7 @@ class OllamaClient:
         data = _post(f"{self.host}/api/chat", {
             "model": self.model, "messages": wire, "stream": False,
             "tools": [{"type": "function", "function": t} for t in tools],
-            "options": {"temperature": 0},
+            "options": {"temperature": self.temperature, "num_ctx": 16384, "num_predict": 2048},
         }, {})
         msg = data.get("message", {})
         text = msg.get("content", "")
@@ -66,12 +67,13 @@ class OllamaClient:
 
 
 class AnthropicClient:
-    def __init__(self, model: str = "claude-sonnet-5-5"):
+    def __init__(self, model: str = "claude-sonnet-5-5", temperature: float = 0.0):
         key = os.environ.get("ANTHROPIC_API_KEY")
         if not key:
             raise RuntimeError("ANTHROPIC_API_KEY is not set")
         self.key = key
         self.model = model
+        self.temperature = temperature
         self.label = f"anthropic/{model}"
 
     def complete(self, system: str, messages: list[dict], tools: list[dict]) -> Reply:
@@ -91,6 +93,7 @@ class AnthropicClient:
                 wire.append({"role": "user", "content": m["content"]})
         data = _post("https://api.anthropic.com/v1/messages", {
             "model": self.model, "max_tokens": 4096, "system": system, "messages": wire,
+            "temperature": self.temperature,
             "tools": [{"name": t["name"], "description": t["description"], "input_schema": t["parameters"]} for t in tools],
         }, {"x-api-key": self.key, "anthropic-version": "2023-06-01"})
         text = "".join(b.get("text", "") for b in data["content"] if b["type"] == "text")
@@ -127,10 +130,10 @@ def parse_text_tool_calls(text: str, tool_names: set[str]) -> list[ToolCall]:
     return calls
 
 
-def make_client(spec: str):
+def make_client(spec: str, temperature: float = 0.0):
     provider, _, model = spec.partition("/")
     if provider == "ollama":
-        return OllamaClient(model or "qwen2.5:1.5b")
+        return OllamaClient(model or "qwen2.5:1.5b", temperature=temperature)
     if provider == "anthropic":
-        return AnthropicClient(model or "claude-sonnet-5-5")
+        return AnthropicClient(model or "claude-sonnet-5-5", temperature=temperature)
     raise ValueError(f"unknown model spec {spec!r}, use ollama/<model> or anthropic/<model>")

@@ -1,0 +1,105 @@
+[
+  {
+    "name": "arc3-kestrel-f006d47",
+    "repo": "AI-Engineering/arc3-kestrel",
+    "fix": "f006d47",
+    "subject": "harden the two K38 paths that could crash a run rather than fail a check",
+    "tests": [
+      "tools/smoke/test_prompt_dedupe.py"
+    ],
+    "check": "python -m pytest -q -x -p no:cacheprovider tools/smoke/test_prompt_dedupe.py",
+    "base_exit": 5,
+    "fixed_exit": 5,
+    "usable": false,
+    "base_tail": "\nno tests ran in 0.01s\n",
+    "fixed_tail": "\nno tests ran in 0.01s\n"
+  },
+  {
+    "name": "arc3-kestrel-3669e50",
+    "repo": "AI-Engineering/arc3-kestrel",
+    "fix": "3669e50",
+    "subject": "fix: LEVEL_DEATH fired once per action, not once per level",
+    "tests": [
+      "tools/smoke/test_memory_death.py"
+    ],
+    "check": "python -m pytest -q -x -p no:cacheprovider tools/smoke/test_memory_death.py",
+    "base_exit": 5,
+    "fixed_exit": 5,
+    "usable": false,
+    "base_tail": "\nno tests ran in 0.01s\n",
+    "fixed_tail": "\nno tests ran in 0.01s\n"
+  },
+  {
+    "name": "gemma4-dev-agent-5fa7764",
+    "repo": "AI-Engineering/gemma4-dev-agent",
+    "fix": "5fa7764",
+    "subject": "feat: opt-in EVAL_ALLOW_NON_SCORER_GPU for labeled proxy-hardware A/B runs",
+    "tests": [
+      "tests/test_build_kernel.py"
+    ],
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_build_kernel.py",
+    "base_exit": 1,
+    "fixed_exit": 1,
+    "usable": false,
+    "base_tail": "ild_kernel.py:57: SystemExit\n=========================== short test summary info ============================\nFAILED tests/test_build_kernel.py::test_build_uses_given_owner - SystemExit: ...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 3 passed in 0.03s\n",
+    "fixed_tail": "ild_kernel.py:57: SystemExit\n=========================== short test summary info ============================\nFAILED tests/test_build_kernel.py::test_build_uses_given_owner - SystemExit: ...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 3 passed in 0.05s\n"
+  },
+  {
+    "name": "gemma4-dev-agent-2813807",
+    "repo": "AI-Engineering/gemma4-dev-agent",
+    "fix": "2813807",
+    "subject": "feat: eval runner saves each graded patch (non-fatal) for offline gold-patch comparison",
+    "tests": [
+      "tests/test_build_kernel.py"
+    ],
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_build_kernel.py",
+    "base_exit": 1,
+    "fixed_exit": 1,
+    "usable": false,
+    "base_tail": "ild_kernel.py:57: SystemExit\n=========================== short test summary info ============================\nFAILED tests/test_build_kernel.py::test_build_uses_given_owner - SystemExit: ...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 3 passed in 0.03s\n",
+    "fixed_tail": "ild_kernel.py:57: SystemExit\n=========================== short test summary info ============================\nFAILED tests/test_build_kernel.py::test_build_uses_given_owner - SystemExit: ...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 3 passed in 0.05s\n"
+  },
+  {
+    "name": "gemma4-dev-agent-0469a96",
+    "repo": "AI-Engineering/gemma4-dev-agent",
+    "fix": "0469a96",
+    "subject": "fix: prepare reliable Kaggle paired evaluation handoff",
+    "tests": [
+      "tests/test_build_kernel.py"
+    ],
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_build_kernel.py",
+    "base_exit": 1,
+    "fixed_exit": 1,
+    "usable": false,
+    "base_tail": "ild_kernel.py:57: SystemExit\n=========================== short test summary info ============================\nFAILED tests/test_build_kernel.py::test_build_uses_given_owner - SystemExit: ...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 3 passed in 0.04s\n",
+    "fixed_tail": "ild_kernel.py:57: SystemExit\n=========================== short test summary info ============================\nFAILED tests/test_build_kernel.py::test_build_uses_given_owner - SystemExit: ...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n1 failed, 3 passed in 0.04s\n"
+  },
+  {
+    "name": "workspace-dynamics-74d68dd",
+    "repo": "Research-and-Papers/workspace-dynamics",
+    "fix": "74d68dd",
+    "subject": "Fix task generator review findings",
+    "tests": [
+      "tests/test_tasks.py"
+    ],
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_tasks.py",
+    "base_exit": 1,
+    "fixed_exit": 0,
+    "usable": true,
+    "base_tail": "ISE <class 'ValueError'>\n\ntests/test_tasks.py:47: Failed\n=========================== short test summary info ============================\nFAILED tests/test_tasks.py::test_template_identifier_is_derived_from_prompt_text\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n",
+    "fixed_tail": "............................................................             [100%]\n"
+  },
+  {
+    "name": "workspace-dynamics-534e8f9",
+    "repo": "Research-and-Papers/workspace-dynamics",
+    "fix": "534e8f9",
+    "subject": "fix: store full positional rank rows and add control aggregations",
+    "tests": [],
+    "check": "python -m pytest -q -x -p no:cacheprovider ",
+    "base_exit": 0,
+    "fixed_exit": 1,
+    "usable": false,
+    "base_tail": "........................................................................ [ 45%]\n........................................................................ [ 90%]\n................                                                         [100%]\n",
+    "fixed_tail": "e09e1710b\n\ntests/test_miniprobe.py:107: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_miniprobe.py::test_code_hashes_match_the_reviewed_implementation\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "name": "wsdyn-auroc-midrank",
+    "repo": "Research-and-Papers/workspace-dynamics",
+    "rev": "a9f66d8",
+    "kind": "planted",
+    "symptom": "auroc() in wsdyn gives wrong AUROC values, for example a perfect ranking no longer scores 1.0.",
+    "tests": [
+      "tests/test_evaluation.py"
+    ],
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_evaluation.py",
+    "base_exit": 1,
+    "usable": true
+  },
+  {
+    "name": "wsdyn-cf7-gate",
+    "repo": "Research-and-Papers/workspace-dynamics",
+    "rev": "a9f66d8",
+    "kind": "planted",
+    "symptom": "validate_cf7_label() rejects rows whose effect is exactly 15 percent as dead-zone rows, but 15 percent should count as False.",
+    "tests": [
+      "tests/test_evaluation.py"
+    ],
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_evaluation.py",
+    "base_exit": 1,
+    "usable": true
+  },
+  {
+    "name": "wsdyn-accuracy-threshold",
+    "repo": "Research-and-Papers/workspace-dynamics",
+    "rev": "a9f66d8",
+    "kind": "planted",
+    "symptom": "metrics() reports the wrong accuracy when a predicted probability is exactly 0.5.",
+    "tests": [
+      "tests/test_evaluation.py"
+    ],
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_evaluation.py",
+    "base_exit": 0,
+    "usable": false
+  },
+  {
+    "name": "wsdyn-duplicate-claims",
+    "repo": "Research-and-Papers/workspace-dynamics",
+    "rev": "a9f66d8",
+    "kind": "planted",
+    "symptom": "index_rows() silently accepts duplicate claim_id values instead of raising ValueError.",
+    "tests": [
+      "tests/test_evaluation.py"
+    ],
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_evaluation.py",
+    "base_exit": 1,
+    "usable": true
+  },
+  {
+    "name": "wsdyn-blind-metadata",
+    "repo": "Research-and-Papers/workspace-dynamics",
+    "rev": "a9f66d8",
+    "kind": "planted",
+    "symptom": "blind_claim() lets extra metadata nested inside messages through to the blinded output.",
+    "tests": [
+      "tests/test_evaluation.py"
+    ],
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_evaluation.py",
+    "base_exit": 1,
+    "usable": true
+  },
+  {
+    "name": "wsdyn-bootstrap-floor",
+    "repo": "Research-and-Papers/workspace-dynamics",
+    "rev": "a9f66d8",
+    "kind": "planted",
+    "symptom": "paired_analysis() accepts fewer than 100 bootstrap draws instead of raising ValueError.",
+    "tests": [
+      "tests/test_evaluation.py"
+    ],
+    "check": "python -m pytest -q -x -p no:cacheprovider tests/test_evaluation.py",
+    "base_exit": 0,
+    "usable": false
+  }
+]

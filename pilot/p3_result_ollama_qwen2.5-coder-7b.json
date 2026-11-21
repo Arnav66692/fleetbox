@@ -1,0 +1,345 @@
+{
+  "model": "ollama/qwen2.5-coder:7b",
+  "tasks": [
+    {
+      "name": "workspace-dynamics-74d68dd",
+      "kind": "real",
+      "baseline_passed": false,
+      "best_of_5_passed": 0,
+      "seconds": 43,
+      "baseline": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 5,
+          "seconds": 10.1,
+          "changed": [],
+          "check_tail": "ISE <class 'ValueError'>\n\ntests/test_tasks.py:47: Failed\n=========================== short test summary info ============================\nFAILED tests/test_tasks.py::test_template_identifier_is_derived_from_prompt_text\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ],
+      "attempts": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 3,
+          "seconds": 30.8,
+          "changed": [],
+          "check_tail": "ISE <class 'ValueError'>\n\ntests/test_tasks.py:47: Failed\n=========================== short test summary info ============================\nFAILED tests/test_tasks.py::test_template_identifier_is_derived_from_prompt_text\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 2,
+          "status": "failed",
+          "passed": false,
+          "steps": 4,
+          "seconds": 31.4,
+          "changed": [],
+          "check_tail": "ISE <class 'ValueError'>\n\ntests/test_tasks.py:47: Failed\n=========================== short test summary info ============================\nFAILED tests/test_tasks.py::test_template_identifier_is_derived_from_prompt_text\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 3,
+          "status": "failed",
+          "passed": false,
+          "steps": 4,
+          "seconds": 31.2,
+          "changed": [],
+          "check_tail": "ISE <class 'ValueError'>\n\ntests/test_tasks.py:47: Failed\n=========================== short test summary info ============================\nFAILED tests/test_tasks.py::test_template_identifier_is_derived_from_prompt_text\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 4,
+          "status": "failed",
+          "passed": false,
+          "steps": 2,
+          "seconds": 11.7,
+          "changed": [],
+          "check_tail": "ISE <class 'ValueError'>\n\ntests/test_tasks.py:47: Failed\n=========================== short test summary info ============================\nFAILED tests/test_tasks.py::test_template_identifier_is_derived_from_prompt_text\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 5,
+          "status": "failed",
+          "passed": false,
+          "steps": 3,
+          "seconds": 22.2,
+          "changed": [],
+          "check_tail": "ISE <class 'ValueError'>\n\ntests/test_tasks.py:47: Failed\n=========================== short test summary info ============================\nFAILED tests/test_tasks.py::test_template_identifier_is_derived_from_prompt_text\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ]
+    },
+    {
+      "name": "wsdyn-auroc-midrank",
+      "kind": "planted",
+      "baseline_passed": false,
+      "best_of_5_passed": 0,
+      "seconds": 75,
+      "baseline": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 3,
+          "seconds": 9.4,
+          "changed": [],
+          "check_tail": ", [0.5, 0.5])\n\ntests/test_evaluation.py:73: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_auroc_handles_ties_and_reversed_rankings\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ],
+      "attempts": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 2,
+          "seconds": 28.0,
+          "changed": [],
+          "check_tail": ", [0.5, 0.5])\n\ntests/test_evaluation.py:73: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_auroc_handles_ties_and_reversed_rankings\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 2,
+          "status": "failed",
+          "passed": false,
+          "steps": 3,
+          "seconds": 40.3,
+          "changed": [],
+          "check_tail": ", [0.5, 0.5])\n\ntests/test_evaluation.py:73: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_auroc_handles_ties_and_reversed_rankings\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 3,
+          "status": "failed",
+          "passed": false,
+          "steps": 5,
+          "seconds": 63.7,
+          "changed": [
+            "wsdyn/auroc.py"
+          ],
+          "check_tail": ", [0.5, 0.5])\n\ntests/test_evaluation.py:73: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_auroc_handles_ties_and_reversed_rankings\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 4,
+          "status": "failed",
+          "passed": false,
+          "steps": 4,
+          "seconds": 59.4,
+          "changed": [
+            "wsdyn.py"
+          ],
+          "check_tail": ", [0.5, 0.5])\n\ntests/test_evaluation.py:73: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_auroc_handles_ties_and_reversed_rankings\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 5,
+          "status": "failed",
+          "passed": false,
+          "steps": 2,
+          "seconds": 29.2,
+          "changed": [],
+          "check_tail": ", [0.5, 0.5])\n\ntests/test_evaluation.py:73: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_auroc_handles_ties_and_reversed_rankings\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ]
+    },
+    {
+      "name": "wsdyn-cf7-gate",
+      "kind": "planted",
+      "baseline_passed": false,
+      "best_of_5_passed": 0,
+      "seconds": 132,
+      "baseline": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 7,
+          "seconds": 14.2,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "class 'ValueError'>\n\ntests/test_evaluation.py:67: Failed\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_dead_zone_is_not_a_negative_label - Fai...\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ],
+      "attempts": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 7,
+          "seconds": 115.9,
+          "changed": [
+            "src/evaluation.py"
+          ],
+          "check_tail": "f7 dead-zone row\n\nsrc/wsdyn/evaluation.py:88: ValueError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_cf7_exact_integer_gate_boundaries[3-False]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 2,
+          "status": "failed",
+          "passed": false,
+          "steps": 2,
+          "seconds": 55.3,
+          "changed": [],
+          "check_tail": "f7 dead-zone row\n\nsrc/wsdyn/evaluation.py:88: ValueError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_cf7_exact_integer_gate_boundaries[3-False]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 3,
+          "status": "failed",
+          "passed": false,
+          "steps": 7,
+          "seconds": 116.4,
+          "changed": [],
+          "check_tail": "f7 dead-zone row\n\nsrc/wsdyn/evaluation.py:88: ValueError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_cf7_exact_integer_gate_boundaries[3-False]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 4,
+          "status": "failed",
+          "passed": false,
+          "steps": 5,
+          "seconds": 99.6,
+          "changed": [],
+          "check_tail": "f7 dead-zone row\n\nsrc/wsdyn/evaluation.py:88: ValueError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_cf7_exact_integer_gate_boundaries[3-False]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 5,
+          "status": "failed",
+          "passed": false,
+          "steps": 4,
+          "seconds": 98.7,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": " measured counts\n\nsrc/wsdyn/evaluation.py:90: ValueError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_cf7_exact_integer_gate_boundaries[0-False]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ]
+    },
+    {
+      "name": "wsdyn-duplicate-claims",
+      "kind": "planted",
+      "baseline_passed": false,
+      "best_of_5_passed": 0,
+      "seconds": 40,
+      "baseline": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 3,
+          "seconds": 4.3,
+          "changed": [],
+          "check_tail": "lass 'ValueError'>\n\ntests/test_evaluation.py:108: Failed\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_partial_or_duplicate_arms_cannot_be_scored\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ],
+      "attempts": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 3,
+          "seconds": 14.7,
+          "changed": [],
+          "check_tail": "lass 'ValueError'>\n\ntests/test_evaluation.py:108: Failed\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_partial_or_duplicate_arms_cannot_be_scored\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 2,
+          "status": "failed",
+          "passed": false,
+          "steps": 5,
+          "seconds": 33.6,
+          "changed": [],
+          "check_tail": "lass 'ValueError'>\n\ntests/test_evaluation.py:108: Failed\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_partial_or_duplicate_arms_cannot_be_scored\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 3,
+          "status": "failed",
+          "passed": false,
+          "steps": 3,
+          "seconds": 20.4,
+          "changed": [],
+          "check_tail": "lass 'ValueError'>\n\ntests/test_evaluation.py:108: Failed\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_partial_or_duplicate_arms_cannot_be_scored\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 4,
+          "status": "failed",
+          "passed": false,
+          "steps": 4,
+          "seconds": 29.5,
+          "changed": [],
+          "check_tail": "lass 'ValueError'>\n\ntests/test_evaluation.py:108: Failed\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_partial_or_duplicate_arms_cannot_be_scored\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 5,
+          "status": "failed",
+          "passed": false,
+          "steps": 3,
+          "seconds": 25.4,
+          "changed": [],
+          "check_tail": "lass 'ValueError'>\n\ntests/test_evaluation.py:108: Failed\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_partial_or_duplicate_arms_cannot_be_scored\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ]
+    },
+    {
+      "name": "wsdyn-blind-metadata",
+      "kind": "planted",
+      "baseline_passed": false,
+      "best_of_5_passed": 0,
+      "seconds": 57,
+      "baseline": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 12,
+          "seconds": 14.3,
+          "changed": [],
+          "check_tail": " diff\n\ntests/test_evaluation.py:37: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_hidden_outcomes_are_removed_at_all_schema_levels\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ],
+      "attempts": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 4,
+          "seconds": 38.9,
+          "changed": [],
+          "check_tail": " diff\n\ntests/test_evaluation.py:37: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_hidden_outcomes_are_removed_at_all_schema_levels\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 2,
+          "status": "failed",
+          "passed": false,
+          "steps": 2,
+          "seconds": 8.7,
+          "changed": [],
+          "check_tail": " diff\n\ntests/test_evaluation.py:37: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_hidden_outcomes_are_removed_at_all_schema_levels\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 3,
+          "status": "failed",
+          "passed": false,
+          "steps": 3,
+          "seconds": 26.2,
+          "changed": [],
+          "check_tail": " diff\n\ntests/test_evaluation.py:37: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_hidden_outcomes_are_removed_at_all_schema_levels\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 4,
+          "status": "failed",
+          "passed": false,
+          "steps": 5,
+          "seconds": 41.3,
+          "changed": [],
+          "check_tail": " diff\n\ntests/test_evaluation.py:37: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_hidden_outcomes_are_removed_at_all_schema_levels\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 5,
+          "status": "failed",
+          "passed": false,
+          "steps": 4,
+          "seconds": 40.4,
+          "changed": [],
+          "check_tail": " diff\n\ntests/test_evaluation.py:37: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_hidden_outcomes_are_removed_at_all_schema_levels\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ]
+    }
+  ],
+  "solved_best_of_5": 0,
+  "solved_baseline": 0,
+  "rescued_by_best_of_5": [],
+  "of": 5,
+  "verdict": "FAIL"
+}
