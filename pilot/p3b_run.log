@@ -1,0 +1,6 @@
+{"name": "workspace-dynamics-74d68dd", "baseline_passed": false, "best_of_5_passed": 0, "seconds": 602}
+{"name": "wsdyn-auroc-midrank", "baseline_passed": true, "best_of_5_passed": 4, "seconds": 717}
+{"name": "wsdyn-cf7-gate", "baseline_passed": false, "best_of_5_passed": 0, "seconds": 784}
+{"name": "wsdyn-duplicate-claims", "baseline_passed": false, "best_of_5_passed": 4, "seconds": 1177}
+{"name": "wsdyn-blind-metadata", "baseline_passed": false, "best_of_5_passed": 0, "seconds": 602}
+{"model": "ollama/gpt-oss:20b", "solved_best_of_5": 2, "solved_baseline": 1, "rescued_by_best_of_5": ["wsdyn-duplicate-claims"], "of": 5, "verdict": "FAIL"}

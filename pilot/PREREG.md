@@ -30,3 +30,18 @@ Model: ollama/qwen2.5-coder:7b. Max 20 steps per attempt.
 
 PASS if best-of-5 solves at least 3 of 5 tasks AND at least 1 solved task is one the baseline failed.
 FAIL otherwise. On FAIL with the local model, fleetbox stays a portfolio piece unless a stronger model (Anthropic key) is tested.
+
+## P3b same pilot, model gpt-oss:20b (written 2026-11-21, after P3 failed, before any P3b attempt ran)
+Same 5 tasks, same checks, same protected tests, same harness as commit 35bd478, same bar:
+PASS if best-of-5 solves at least 3 of 5 AND at least 1 solved task failed at baseline. FAIL otherwise.
+Only the model changes (ollama/gpt-oss:20b). Harness changes allowed before the run only if the
+throwaway-repo smoke test shows the model cannot use the tools at all. Any such change is listed here.
+If P3b fails too, fleetbox is parked as a portfolio piece until after Nov 30.
+
+### P3b outcome (recorded 2026-11-21)
+FAIL by the bar: best-of-5 solved 2 of 5 (auroc-midrank 4/5, duplicate-claims 4/5), baseline 1 of 5.
+duplicate-claims failed at baseline and was solved by best-of-5, so the rescue half of the bar was met.
+Confound: 18 of 30 attempts ended at step 1 on the 300 s model-call timeout, with no model reply.
+Ollama was serving other models for another program during the run (qwen3-vl:8b, gpt-oss-64k).
+The 3 unsolved tasks had 17 of their 18 attempts cut off this way, so they were not a fair test of the model.
+Any rerun is a new preregistered pilot (P3c), not a rescue of P3b.
