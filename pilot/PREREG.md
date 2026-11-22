@@ -45,3 +45,23 @@ Confound: 18 of 30 attempts ended at step 1 on the 300 s model-call timeout, wit
 Ollama was serving other models for another program during the run (qwen3-vl:8b, gpt-oss-64k).
 The 3 unsolved tasks had 17 of their 18 attempts cut off this way, so they were not a fair test of the model.
 Any rerun is a new preregistered pilot (P3c), not a rescue of P3b.
+
+## P3c rerun of P3b without the timeout confound (written 2026-11-21, before any P3c attempt ran)
+Same 5 tasks, checks, protected tests, prompts, model (ollama/gpt-oss:20b), 20 steps, temperatures and bar as P3b.
+Changes, all aimed at the P3b confound only:
+- Model-call timeout 900 s instead of 300 s (FLEETBOX_MODEL_TIMEOUT=900).
+- Best-of-5 attempts run 2 at a time instead of 5.
+- Ollama must show no other model loaded right before the start, and `ollama ps` is logged at the start.
+- Each attempt records whether it ended on a model timeout.
+PASS if best-of-5 solves at least 3 of 5 AND at least 1 solved task failed at baseline. FAIL otherwise.
+If more than 5 of the 30 attempts still end on a model timeout, the run is reported as inconclusive instead of PASS or FAIL.
+P3c is reported next to P3 and P3b, not instead of them.
+
+### P3c outcome (recorded 2026-11-21)
+PASS by the bar: best-of-5 solved 4 of 5 (auroc-midrank 5/5, cf7-gate 5/5, duplicate-claims 5/5, blind-metadata 5/5).
+Baseline solved 2 of 5. cf7-gate and blind-metadata failed at baseline and were solved by best-of-5.
+Model timeouts: 0 of 30, so the inconclusive rule did not apply.
+Not solved: the real past fix 74d68dd, 0 of 6 attempts (3 hit the 20-step limit, the rest ended on Ollama errors).
+Other errors: 7 attempts ended on "HTTP Error 500" from Ollama. 1 of those still passed the check, because its fix was already in place.
+Caveat: 4 of the 5 tasks are planted single-line bugs. The only real historical fix was not solved.
+Wall time 17 minutes, 2 attempts at a time.

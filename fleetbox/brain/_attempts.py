@@ -27,6 +27,8 @@ class Attempt:
     result_dir: str = ""
     steps: int = 0
     seconds: float = 0.0
+    agent_status: str = ""
+    agent_summary: str = ""
 
 
 def _files(root: Path) -> set[str]:
@@ -75,7 +77,8 @@ def _one(index: int, fleet_id: str, source: Path, task: str, check: str, model: 
         store.finish_run(run_id, status, result.summary, result.steps, result.input_tokens,
                          result.output_tokens, result.seconds)
         return Attempt(index, run_id, status, passed, verdict.output[-2000:], changed, deleted,
-                       str(result_dir), result.steps, result.seconds)
+                       str(result_dir), result.steps, result.seconds,
+                       result.status, result.summary[:500])
     except Exception as err:
         store.add_event(run_id, {"type": "error", "message": str(err)})
         store.finish_run(run_id, "error", str(err), 0, 0, 0, 0.0)

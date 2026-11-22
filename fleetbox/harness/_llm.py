@@ -19,7 +19,10 @@ class Reply:
     output_tokens: int = 0
 
 
-def _post(url: str, body: dict, headers: dict, timeout: float = 300) -> dict:
+MODEL_TIMEOUT = float(os.environ.get("FLEETBOX_MODEL_TIMEOUT", "300"))
+
+
+def _post(url: str, body: dict, headers: dict, timeout: float = MODEL_TIMEOUT) -> dict:
     req = urllib.request.Request(
         url, data=json.dumps(body).encode(), headers={"content-type": "application/json", **headers}
     )

@@ -1,0 +1,10 @@
+Sat Nov 21 18:01:12 PST 2026
+NAME    ID    SIZE    PROCESSOR    CONTEXT    RUNNER    UNTIL 
+{"name": "workspace-dynamics-74d68dd", "baseline_passed": false, "best_of_5_passed": 0, "seconds": 237}
+{"name": "wsdyn-auroc-midrank", "baseline_passed": true, "best_of_5_passed": 5, "seconds": 126}
+{"name": "wsdyn-cf7-gate", "baseline_passed": false, "best_of_5_passed": 5, "seconds": 105}
+{"name": "wsdyn-duplicate-claims", "baseline_passed": true, "best_of_5_passed": 5, "seconds": 336}
+{"name": "wsdyn-blind-metadata", "baseline_passed": false, "best_of_5_passed": 5, "seconds": 218}
+{"model": "ollama/gpt-oss:20b", "solved_best_of_5": 4, "solved_baseline": 2, "rescued_by_best_of_5": ["wsdyn-cf7-gate", "wsdyn-blind-metadata"], "of": 5, "verdict": "PASS"}
+--- end
+Sat Nov 21 18:18:18 PST 2026

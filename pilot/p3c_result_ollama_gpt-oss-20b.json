@@ -1,0 +1,450 @@
+{
+  "model": "ollama/gpt-oss:20b",
+  "tasks": [
+    {
+      "name": "workspace-dynamics-74d68dd",
+      "kind": "real",
+      "baseline_passed": false,
+      "best_of_5_passed": 0,
+      "seconds": 237,
+      "baseline": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 20,
+          "seconds": 13.7,
+          "agent_status": "step_limit",
+          "timed_out": false,
+          "changed": [],
+          "check_tail": "ISE <class 'ValueError'>\n\ntests/test_tasks.py:47: Failed\n=========================== short test summary info ============================\nFAILED tests/test_tasks.py::test_template_identifier_is_derived_from_prompt_text\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ],
+      "attempts": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 12,
+          "seconds": 76.9,
+          "agent_status": "error",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/tasks.py"
+          ],
+          "check_tail": "alueError'>\n\ntests/test_tasks.py:116: Failed\n=========================== short test summary info ============================\nFAILED tests/test_tasks.py::test_generator_rejects_invalid_arguments[overrides10-ValueError]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 2,
+          "status": "failed",
+          "passed": false,
+          "steps": 15,
+          "seconds": 94.8,
+          "agent_status": "error",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/tasks.py"
+          ],
+          "check_tail": "alueError'>\n\ntests/test_tasks.py:116: Failed\n=========================== short test summary info ============================\nFAILED tests/test_tasks.py::test_generator_rejects_invalid_arguments[overrides10-ValueError]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 3,
+          "status": "failed",
+          "passed": false,
+          "steps": 20,
+          "seconds": 108.6,
+          "agent_status": "step_limit",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/tasks.py"
+          ],
+          "check_tail": "alueError'>\n\ntests/test_tasks.py:116: Failed\n=========================== short test summary info ============================\nFAILED tests/test_tasks.py::test_generator_rejects_invalid_arguments[overrides10-ValueError]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 4,
+          "status": "failed",
+          "passed": false,
+          "steps": 15,
+          "seconds": 127.5,
+          "agent_status": "error",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/tasks.py"
+          ],
+          "check_tail": "alueError'>\n\ntests/test_tasks.py:116: Failed\n=========================== short test summary info ============================\nFAILED tests/test_tasks.py::test_generator_rejects_invalid_arguments[overrides10-ValueError]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        },
+        {
+          "index": 5,
+          "status": "failed",
+          "passed": false,
+          "steps": 7,
+          "seconds": 35.0,
+          "agent_status": "error",
+          "timed_out": false,
+          "changed": [],
+          "check_tail": "ISE <class 'ValueError'>\n\ntests/test_tasks.py:47: Failed\n=========================== short test summary info ============================\nFAILED tests/test_tasks.py::test_template_identifier_is_derived_from_prompt_text\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ]
+    },
+    {
+      "name": "wsdyn-auroc-midrank",
+      "kind": "planted",
+      "baseline_passed": true,
+      "best_of_5_passed": 5,
+      "seconds": 126,
+      "baseline": [
+        {
+          "index": 1,
+          "status": "passed",
+          "passed": true,
+          "steps": 8,
+          "seconds": 11.8,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        }
+      ],
+      "attempts": [
+        {
+          "index": 1,
+          "status": "passed",
+          "passed": true,
+          "steps": 10,
+          "seconds": 27.1,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 2,
+          "status": "passed",
+          "passed": true,
+          "steps": 10,
+          "seconds": 27.7,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 3,
+          "status": "passed",
+          "passed": true,
+          "steps": 13,
+          "seconds": 61.6,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 4,
+          "status": "passed",
+          "passed": true,
+          "steps": 15,
+          "seconds": 69.4,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 5,
+          "status": "passed",
+          "passed": true,
+          "steps": 10,
+          "seconds": 23.6,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        }
+      ]
+    },
+    {
+      "name": "wsdyn-cf7-gate",
+      "kind": "planted",
+      "baseline_passed": false,
+      "best_of_5_passed": 5,
+      "seconds": 105,
+      "baseline": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 16,
+          "seconds": 17.7,
+          "agent_status": "error",
+          "timed_out": false,
+          "changed": [],
+          "check_tail": "f7 dead-zone row\n\nsrc/wsdyn/evaluation.py:88: ValueError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_cf7_exact_integer_gate_boundaries[3-False]\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ],
+      "attempts": [
+        {
+          "index": 1,
+          "status": "passed",
+          "passed": true,
+          "steps": 7,
+          "seconds": 27.3,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 2,
+          "status": "passed",
+          "passed": true,
+          "steps": 14,
+          "seconds": 40.3,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 3,
+          "status": "passed",
+          "passed": true,
+          "steps": 7,
+          "seconds": 13.9,
+          "agent_status": "error",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 4,
+          "status": "passed",
+          "passed": true,
+          "steps": 8,
+          "seconds": 34.2,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 5,
+          "status": "passed",
+          "passed": true,
+          "steps": 9,
+          "seconds": 43.4,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        }
+      ]
+    },
+    {
+      "name": "wsdyn-duplicate-claims",
+      "kind": "planted",
+      "baseline_passed": true,
+      "best_of_5_passed": 5,
+      "seconds": 336,
+      "baseline": [
+        {
+          "index": 1,
+          "status": "passed",
+          "passed": true,
+          "steps": 9,
+          "seconds": 36.4,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        }
+      ],
+      "attempts": [
+        {
+          "index": 1,
+          "status": "passed",
+          "passed": true,
+          "steps": 13,
+          "seconds": 99.8,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 2,
+          "status": "passed",
+          "passed": true,
+          "steps": 9,
+          "seconds": 70.2,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 3,
+          "status": "passed",
+          "passed": true,
+          "steps": 20,
+          "seconds": 185.1,
+          "agent_status": "step_limit",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 4,
+          "status": "passed",
+          "passed": true,
+          "steps": 16,
+          "seconds": 156.4,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 5,
+          "status": "passed",
+          "passed": true,
+          "steps": 8,
+          "seconds": 38.2,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        }
+      ]
+    },
+    {
+      "name": "wsdyn-blind-metadata",
+      "kind": "planted",
+      "baseline_passed": false,
+      "best_of_5_passed": 5,
+      "seconds": 218,
+      "baseline": [
+        {
+          "index": 1,
+          "status": "failed",
+          "passed": false,
+          "steps": 5,
+          "seconds": 20.8,
+          "agent_status": "error",
+          "timed_out": false,
+          "changed": [],
+          "check_tail": " diff\n\ntests/test_evaluation.py:37: AssertionError\n=========================== short test summary info ============================\nFAILED tests/test_evaluation.py::test_hidden_outcomes_are_removed_at_all_schema_levels\n!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+        }
+      ],
+      "attempts": [
+        {
+          "index": 1,
+          "status": "passed",
+          "passed": true,
+          "steps": 9,
+          "seconds": 75.7,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 2,
+          "status": "passed",
+          "passed": true,
+          "steps": 7,
+          "seconds": 47.1,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 3,
+          "status": "passed",
+          "passed": true,
+          "steps": 9,
+          "seconds": 96.8,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 4,
+          "status": "passed",
+          "passed": true,
+          "steps": 7,
+          "seconds": 77.1,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        },
+        {
+          "index": 5,
+          "status": "passed",
+          "passed": true,
+          "steps": 13,
+          "seconds": 45.9,
+          "agent_status": "done",
+          "timed_out": false,
+          "changed": [
+            "src/wsdyn/evaluation.py"
+          ],
+          "check_tail": "...................                                                      [100%]\n"
+        }
+      ]
+    }
+  ],
+  "solved_best_of_5": 4,
+  "solved_baseline": 2,
+  "rescued_by_best_of_5": [
+    "wsdyn-cf7-gate",
+    "wsdyn-blind-metadata"
+  ],
+  "of": 5,
+  "verdict": "PASS"
+}

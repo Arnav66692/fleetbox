@@ -8,12 +8,14 @@ sys.path.insert(0, str(ROOT))
 from fleetbox import brain  # noqa: E402
 
 MODEL = sys.argv[1] if len(sys.argv) > 1 else "ollama/qwen2.5-coder:7b"
-OUT = Path(__file__).with_name(f"p3_result_{MODEL.replace('/', '_').replace(':', '-')}.json")
+PARALLEL = int(sys.argv[2]) if len(sys.argv) > 2 else 5
+TAG = sys.argv[3] if len(sys.argv) > 3 else ""
+OUT = Path(__file__).with_name(f"p3{TAG}_result_{MODEL.replace('/', '_').replace(':', '-')}.json")
 
 
 def attempt_rows(attempts):
     return [{"index": a.index, "status": a.status, "passed": a.passed, "steps": a.steps,
-             "seconds": round(a.seconds, 1), "changed": a.changed, "check_tail": a.check_output[-300:]}
+             "seconds": round(a.seconds, 1), "agent_status": a.agent_status, "timed_out": a.agent_status == "error" and "timed out" in a.agent_summary, "changed": a.changed, "check_tail": a.check_output[-300:]}
             for a in attempts]
 
 
@@ -29,7 +31,7 @@ def main() -> None:
         base = brain.run_attempts(tree, t["task"], t["check"], MODEL, n=1, temperature=0.0,
                                   protect=t["protect"], max_steps=20)
         best = brain.run_attempts(tree, t["task"], t["check"], MODEL, n=5, temperature=0.7,
-                                  protect=t["protect"], max_steps=20, parallel=5)
+                                  protect=t["protect"], max_steps=20, parallel=PARALLEL)
         row = {"name": t["name"], "kind": t["kind"], "baseline_passed": base[0].passed,
                "best_of_5_passed": sum(a.passed for a in best), "seconds": round(time.perf_counter() - start),
                "baseline": attempt_rows(base), "attempts": attempt_rows(best)}
